@@ -1,4 +1,4 @@
-# jskksheadless-cms dokumentationen
+# headless-cms dokumentationen
 
 ![pic](./public/logo192.png)
 
