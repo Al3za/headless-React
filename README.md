@@ -4,20 +4,34 @@
 
 Med headless menas att du skapar en webside med hjälp av en software-platform såsom Wordpress, för att sedan kunna rendera ut innehållet med hjälp av en library som för exemple React.js.
 Syftet med det är att kunna snygga till content from apiet som du mest gillar.
+##
 
-För att få apiet från en Wordpress websidan behöver du först installera wordpress [Wordpress](https://elementor.com/academy/introduction-to-wordpress/?utm_source=google&utm_medium=cpc&utm_campaign=13060922353&utm_term=&gclid=Cj0KCQjwpeaYBhDXARIsAEzItbFvQizIi3VSSMpD52jqYzAVJv_KcyC3bvl9KyA4FLl09QEo0KcESKQaAqpNEALw_wcB).
+Börja med att skapa en [Pantheon](https://pantheon.io/) account och ladda ned [Wordpress](https://elementor.com/academy/introduction-to-wordpress/?utm_source=google&utm_medium=cpc&utm_campaign=13060922353&utm_term=&gclid=Cj0KCQjwpeaYBhDXARIsAEzItbFvQizIi3VSSMpD52jqYzAVJv_KcyC3bvl9KyA4FLl09QEo0KcESKQaAqpNEALw_wcB) och skriv din första blog enligt länken [skapa pantheon.io account](https://www.youtube.com/watch?v=uO2k1IlBS2A&t=25s).
+##
+Pantheon kan hosta, källkoda och deploya andra aplikationer, i detta fall Wordpress. 
+## 
+Du skall få en Pantheon site url när du är klar, t.ex https://dev-$pantheonsite_site_name.pantheonsite.io/2022/09/15/$wordpress_name/.
+##
+För att få apiet utav din Pantheon posts ska du ange följande url: https://$pantheonsite_site_name.pantheonsite.io//wp-json/wp/v2/posts.
 
-Sedan tar du den följande url [https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?number=2&pretty=true] för att få dina blogs apiet som du ska använda för att rendera ut data i din React projekt.
 #
+Nu skapar man en react projekt 
+```
+npx create-react-app $projekt-name
+```
 Kom ihåg att installera en .env file i din root folder
 ```
 npm install dotenv
 ```
-och i filen lägger du dina miljö variabler som i detta fall innehåller min wordpress apis URL.
-Nu ska man fetcha mot sin miljö variabel namn istället än själva URL:n men innanför namnet ska man lägga till Process.env.$variabelName 
+och i filen lägger du dina miljö variabler som i detta fall innehåller din pantheonsite apis URL
+##
+![](./public/Screenshot%202022-09-15%20225810.png)
+
+Nu i filen App.js ska man fetcha mot sin miljö variabel namn istället än själva URL:n men innanför namnet ska man lägga till Process.env.$variabelName 
 #
 ![](./public/Screenshot%202022-09-14%20175804.png)
-och lägg i filen .gitignore din .env file
+## 
+Sedan lägg fon .env filen .gitignore.
 #
 Testa att din Url ger rätt data och rendera ut det.
 ##
@@ -30,7 +44,7 @@ och checka under http://localhost:3000 att sidan ser ut som förväntades.
 Syftet med det är att inte pusha in känsligt data till GitHub. Sedan pushar du projektet till GitHub
 #
 
-nu ska din sidan deployas.
+nu ska din GitHub sidan deployas.
 ## 
 Gå till https://vercel.com/ och loggar in med dina GitHub inloggnings uppgifter.
 En gång du loggade in, då clickar du på knappen 'add new' 
@@ -48,43 +62,4 @@ Till sist, i enviroments variabel lägger du samma miljö variabel som du har an
 #
 #
 
-Nästa steg är att sätta Wordpress foldern inuti MAMPS foldern som heter htdocs.
-Efteråt, i Wordpress foldern, leta efter wp-config.js filen och ändra databas uppgifterna så att det stämmer med dem du kommer att ange i mysql databasen i i MAMP aplikationen (visar strax nedan).
-För att undvika att pusha in i Githab känsligt data som Databas-keys eller känsliga Url, lägg till i rooten foldern en .env file :
-```
-npm install dotenv-webpack
-```
-och lägg inuti .env filen dina enviromen-variable. Glöm inte att lägga .env filen i gitignore, och att installera i projektet [Composer.js](https://stackoverflow.com/questions/52889744/missing-folder-vendor-and-file-env-after-creating-new-laravel-project)
-
-Nu ska man starta i gång MAMP server. Börja med att hitta MAMP aplikationen i din datorn och klicka på det :
-
-![](./public/mamp%20pic.png)
-
-
-Efter man har klickat, borde du få appen igång : 
-# ![](./public/mamp%20aplikation.png) 
-
-Längst upp till vänster klick på MAMP texten och c "preferences". Se till att "Ports" nummerna är korrekta :
-
-# ![](./public/MAMP%20ports.png)
-
-att PHP versionen är samma som den du har tidigar installerad :
-
-# ![](./public/mamp%20php%20.png)
-
-och att vid "Server", "Dokument root" path pekar mot Wordpress mappen som ligger under MAMP/htdocs foldern (C:\MAMP\htdocs\wordpress i mitt fall) :
-# ![](./public/MAMP%20server.png)
-
-Nu går man till ´open web startpage´:
-
-# ![](./public/Screenshot%202022-09-10%20201813.png)
-
-och clickar man på länken 
-[phpMyAdmin]() som leder dig till databasen.
-
-Där anger du samma uppgifter som du har anget i din wp-config.php innan (DB_name, DB_password, Localhost) 
-
-till slut, click på "START server" i MAMP appen och skriv i url localhost:80 för att see dina post i din Wordpress.
- #� �h�e�a�d�l�e�s�s�-�r�e�a�c�t�
-�
-�
+Du kommer att få en url med din vercel sidan. plocka upp det och klistra in det i följande sidan https://validator.w3.org/ för att se om din sida följer [WCAG](https://www.w3.org/WAI/WCAG21/quickref/) krav. 
