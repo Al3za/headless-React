@@ -17,7 +17,7 @@ function App() {
    return (
     <div className="content">
 
-      {datas.comment_status &&  parse(datas.content.rendered)}
+      {datas.content &&  parse(datas.content.rendered)}
       
     </div>
   ); 
