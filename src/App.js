@@ -11,13 +11,13 @@ function App() {
   useEffect(()=>{
     fetch(process.env.REACT_APP_API_URL)
     .then(res=>res.json())
-    .then(data=>setData(data.posts[0]))
+    .then(data=>setData(data[0]))
   },[])
-
+  console.log(datas)
    return (
     <div className="content">
 
-      {datas.content &&  parse(datas.content)}
+      {datas.comment_status &&  parse(datas.content.rendered)}
       
     </div>
   ); 
